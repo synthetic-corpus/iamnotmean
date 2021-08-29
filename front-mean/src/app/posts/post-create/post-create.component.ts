@@ -11,5 +11,10 @@ export class PostCreateComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  newPost: string = "no content here"
+  enteredValue: string
+  onAddPost(): void {
+    this.newPost = this.enteredValue
+  }
 
 }
