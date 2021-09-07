@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormattedPost } from '../../models/types'
 
 @Component({
   selector: 'app-post-list',
@@ -16,7 +17,7 @@ export class PostListComponent implements OnInit {
       content: "Some other Foo"
     }
   ] */
-  posts: {title: string, content: string}[] = []
+  posts: FormattedPost[] = []
   constructor() { }
 
   ngOnInit(): void {

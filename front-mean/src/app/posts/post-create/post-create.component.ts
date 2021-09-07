@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormattedPost } from '../../models/types'
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
@@ -9,12 +9,17 @@ export class PostCreateComponent implements OnInit {
 
   constructor() { }
 
+  post: FormattedPost
+
   ngOnInit(): void {
   }
-  newPost: string = "no content here"
-  enteredValue: string
+  enteredTitle: string
+  enteredContent: string
   onAddPost(): void {
-    this.newPost = this.enteredValue
+    this.post = {
+      title: this.enteredTitle,
+      content: this.enteredContent
+    }
   }
 
 }
