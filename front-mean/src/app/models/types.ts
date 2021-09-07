@@ -1,4 +1,4 @@
-export type FormattedPost = {
+export interface FormattedPost {
   title: string,
   content: string
 }
