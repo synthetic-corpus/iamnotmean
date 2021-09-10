@@ -1,18 +1,24 @@
 <mat-card>
-  <form (submit)="onAddPost()">
+  <form (submit)="onAddPost(newPostForm)" #newPostForm="ngForm">
     <mat-form-field>
       <input
+        #enteredTitle="ngModel"
         matInput
         type="text"
         name="enteredTitle"
-        ngModel>
+        ngModel
+        required>
+      <mat-error *ngIf="enteredTitle.invalid">Please Enter a Valid e-mail</mat-error>
     </mat-form-field>
     <mat-form-field>
       <textarea
+        #enteredContent="ngModel"
         matInput
         rows="6"
         name="enteredContent"
-        ngModel></textarea>
+        ngModel
+        required></textarea>
+        <mat-error *ngIf="enteredContent.invalid">Please Enter some content</mat-error>
     </mat-form-field>
     <button
       mat-raised-button
