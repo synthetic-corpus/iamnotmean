@@ -7,7 +7,8 @@
         type="text"
         name="enteredTitle"
         ngModel
-        required>
+        required
+        placeholder="title">
       <mat-error *ngIf="enteredTitle.invalid">Please Enter a Valid e-mail</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -17,7 +18,8 @@
         rows="6"
         name="enteredContent"
         ngModel
-        required></textarea>
+        required
+        placeholder="content"></textarea>
         <mat-error *ngIf="enteredContent.invalid">Please Enter some content</mat-error>
     </mat-form-field>
     <button
