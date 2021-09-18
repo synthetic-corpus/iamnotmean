@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormattedPost } from '../../models/types'
+import { FormattedPost } from '../../models/types';
+import { PostService } from '../post.service'
 
 @Component({
   selector: 'app-post-list',
@@ -7,20 +8,12 @@ import { FormattedPost } from '../../models/types'
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-  /*posts: {title: string, content: string}[] = [
-    {
-      title: "First Book",
-      content: "This is the first book post"
-    },
-    {
-      title: "Second Book",
-      content: "Some other Foo"
-    }
-  ] */
   @Input() posts: FormattedPost[] = []
-  constructor() { }
+
+  constructor(public postService: PostService) { }
 
   ngOnInit(): void {
+    this.posts = this.postService.getPosts();
   }
 
 }
