@@ -28,7 +28,11 @@ export class PostService {
       title,
       content
     }
-    this.posts.push(post)
-    this.postsUpdated.next([...this.posts])
+    this.http.post<{message: string}>('http://localhost:8080/api/posts', post)
+      .subscribe((reply)=>{
+        console.log(reply.message)
+        this.posts.push(post)
+        this.postsUpdated.next([...this.posts])
+      })
   }
 }
