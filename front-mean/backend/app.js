@@ -1,7 +1,18 @@
+const secrets = require ('../../secure/secrets')
 const express = require('express')
 const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+
+const Post = require('./models/post')
 
 const app = express()
+mongoose.connect(secrets.connectPath)
+  .then(()=>{
+    console.log('Connected to the mongo Database')
+  })
+  .catch(()=>{
+    console.log('Could not connect to mongo Database')
+  })
 
 app.use(bodyParser.json())
 
@@ -19,8 +30,11 @@ app.use((req,res,next) => {
 })
 
 app.post('/api/posts',(req, res, next) => {
-  const newPost = res.body
-  console.log(newPost)
+  const newPost = new Post({
+    title: req.body.title,
+    content: req.body.content
+  })
+  newPost.save()
   res.status(201).json({'message': 'verily, I say to you, a new posts has been added'})
 })
 
