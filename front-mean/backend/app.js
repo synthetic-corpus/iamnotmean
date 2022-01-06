@@ -39,23 +39,20 @@ app.post('/api/posts',(req, res, next) => {
 })
 
 app.get('/api/posts',(req, res, next) => {
-  const posts = [
-    {
-      id: "jkb23tygdads",
-      title: "Post number one",
-      content: "This comes from a server, not the db"
-    },
-    {
-      id: "7bhjcbhcvvcx",
-      title: "post next two",
-      content: "Still just server dummy data right now"
-    }
-  ]
+  const documents = await Post.find()
   res.status(200).json({
     message: "dummy data returned",
-    posts: posts
+    posts: documents
   }
   );
+})
+
+app.delete("/api/posts/:id",(req,res,next) => {
+  const id = req.params.id
+  const result = await Post.deleteOne({_id: id});
+  if(result){
+    console.log(result)
+  }
 })
 
 module.exports = app;
